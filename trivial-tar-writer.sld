@@ -1,0 +1,6 @@
+(define-library (trivial-tar-writer)
+  (export tar-write-file)
+  (import (scheme base)
+          (scheme char)
+          (scheme write))
+  (include "trivial-tar-writer.scm"))
