@@ -1,5 +1,5 @@
-;;; Copyright (c) 2019 Lassi Kortela
-;;; SPDX-License-Identifier: ISC
+;; Copyright 2019 Lassi Kortela
+;; SPDX-License-Identifier: ISC
 
 (define nulls (make-bytevector 512 0))
 (define zeros (make-bytevector 12 (char->integer #\0)))
