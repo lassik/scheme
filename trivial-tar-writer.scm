@@ -8,7 +8,8 @@
   (let* ((bytes (string->utf8 string))
          (nnull (- nbyte (bytevector-length bytes))))
     (when (< nnull 0) (error "tar: string too long"))
-    (bytevector-copy! header at bytes)))
+    (bytevector-copy! header at bytes)
+    (bytevector-copy! header (+ at (bytevector-length bytes)) nulls 0 nnull)))
 
 (define (tar-poke-octal! header at nbyte number)
   (unless (integer? number) (error "tar: not an integer"))
