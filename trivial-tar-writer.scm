@@ -7,7 +7,7 @@
 (define (tar-poke-string! header at nbyte string)
   (let* ((bytes (string->utf8 string))
          (nnull (- nbyte (bytevector-length bytes))))
-    (when (< nnull 0) (error "tar: string too long"))
+    (when (< nnull 1) (error "tar: string too long"))
     (bytevector-copy! header at bytes)
     (bytevector-copy! header (+ at (bytevector-length bytes)) nulls 0 nnull)))
 
