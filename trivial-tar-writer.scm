@@ -49,6 +49,6 @@
     (write-bytevector bytes)
     (write-bytevector nulls (current-output-port) 0 nnull)))
 
-(define (tar-poke-end)
+(define (tar-write-end)
   (write-bytevector nulls)
   (write-bytevector nulls))
