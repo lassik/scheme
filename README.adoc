@@ -1,0 +1,3 @@
+# Miscellaneous Scheme libraries
+
+Libs that haven't graduated to having a proper home elsewhere.
