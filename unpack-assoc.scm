@@ -53,7 +53,7 @@
 (define-syntax unpack-using/set
   (syntax-rules ()
     ((_ (sets ...))
-     (begin sets ...))
+     (begin sets ... #f))
     ((_ (sets ...) rule rules ...)
      (unpack-using/set (sets ... (unpack-using/rule rule)) rules ...))))
 
