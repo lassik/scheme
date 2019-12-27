@@ -1,10 +1,10 @@
 ;; Copyright 2019 Lassi Kortela
 ;; SPDX-License-Identifier: ISC
 
-(define tar-unix-time (make-parameter 0))
+(define tar-owner (make-parameter (cons 0 "root")))
+(define tar-group (make-parameter (cons 0 "root")))
 (define tar-unix-mode (make-parameter #o644))
-(define tar-owner-name (make-parameter "root"))
-(define tar-group-name (make-parameter "root"))
+(define tar-unix-time (make-parameter 0))
 
 (define nulls (make-bytevector 512 0))
 (define blank-checksum (make-bytevector 7 (char->integer #\space)))
@@ -40,8 +40,8 @@
           (bytevector-append
            (tar-string 100 fake-path)
            (tar-octal 8 (tar-unix-mode))
-           (tar-octal 8 0)
-           (tar-octal 8 0)
+           (tar-octal 8 (car (tar-owner)))
+           (tar-octal 8 (car (tar-group)))
            (tar-octal 12 nbyte)
            (tar-octal 12 (tar-unix-time))))
          (header-after-checksum
@@ -50,8 +50,8 @@
            (bytevector (char->integer #\0))
            (tar-string 100 "")
            (tar-string 8 "ustar  ")
-           (tar-string 32 (tar-owner-name))
-           (tar-string 32 (tar-group-name))
+           (tar-string 32 (cdr (tar-owner)))
+           (tar-string 32 (cdr (tar-group)))
            (make-bytevector 183 0)))
          (checksum (tar-octal 7 (tar-checksum header-before-checksum
                                               blank-checksum

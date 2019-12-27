@@ -1,8 +1,8 @@
 (define-library (trivial-tar-writer)
-  (export tar-unix-time
+  (export tar-owner
+          tar-group
           tar-unix-mode
-          tar-owner-name
-          tar-group-name
+          tar-unix-time
           tar-write-file
           tar-write-end)
   (import (scheme base)
