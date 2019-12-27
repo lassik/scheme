@@ -1,9 +1,14 @@
 #!/bin/sh
-set -eux
-./test-chibi.scm trivial-tar-writer.scm >test-our.tar
-bsdtar -cf test-bsd.tar trivial-tar-writer.scm
-gtar -cf test-gnu.tar trivial-tar-writer.scm
-hexdump -C test-our.tar
+set -eu
+cd "$(dirname "$0")"
+echo "Entering directory '$PWD'"
+set -x
+payload=trivial-tar-writer.scm
+chibi-scheme -A . test-r7rs.scm $payload >test-chibi.tar
+gsi-script . test-r7rs.scm $payload >test-gambit.tar
+bsdtar -cf test-bsd.tar $payload
+gtar -cf test-gnu.tar $payload
+hexdump -C test-chibi.tar
 echo
 echo
 echo

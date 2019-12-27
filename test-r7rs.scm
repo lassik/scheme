@@ -1,4 +1,4 @@
-#! /usr/bin/env chibi-scheme
+#!
 
 (import (scheme base)
         (scheme file)
@@ -16,9 +16,6 @@
          (if (eof-object? part)
              whole
              (loop (bytevector-append whole part))))))))
-
-(tar-write-file "hello/world.text"
-                (slurp-binary-file "trivial-tar-writer.scm"))
 
 (define (main arguments)
   (for-each (lambda (file) (tar-write-file file (slurp-binary-file file)))
