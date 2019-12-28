@@ -5,7 +5,5 @@
           tar-unix-time
           tar-write-file
           tar-write-end)
-  (import (scheme base)
-          (scheme char)
-          (scheme write))
+  (import (scheme base))
   (include "trivial-tar-writer.scm"))
