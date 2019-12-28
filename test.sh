@@ -2,7 +2,7 @@
 set -eu
 cd "$(dirname "$0")"
 echo "Entering directory '$PWD'"
-payload=trivial-tar-writer.scm
+payload="trivial-tar-writer.scm test.sh"
 set -x
 chibi-scheme -A . test-r7rs.scm $payload >test-chibi.tar
 gsi-script . test-r7rs.scm $payload >test-gambit.tar
