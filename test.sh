@@ -7,6 +7,7 @@ set -x
 chibi-scheme -A . test-r7rs.scm $payload >test-chibi.tar
 gsi-script . test-r7rs.scm $payload >test-gambit.tar
 gosh -A . test-r7rs.scm $payload >test-gauche.tar
+kawa -Dkawa.import.path="$PWD/*.sld" test-r7rs.scm $payload >test-kawa.tar
 bsdtar -cf test-bsd.tar $payload
 gtar -cf test-gnu.tar $payload
 hexdump -C test-chibi.tar

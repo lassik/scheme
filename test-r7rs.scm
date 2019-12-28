@@ -1,4 +1,4 @@
-#!
+#! /
 
 (import (scheme base)
         (scheme file)
