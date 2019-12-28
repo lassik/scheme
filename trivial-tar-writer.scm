@@ -29,8 +29,7 @@
                        bytes (bytevector 0))))
 
 (define (tar-write-file fake-path bytes)
-  (let* ((unix-time-now 0)
-         (nbyte (bytevector-length bytes))
+  (let* ((nbyte (bytevector-length bytes))
          (nnull (- 512 (truncate-remainder nbyte 512)))
          (header-before-checksum
           (bytevector-append
