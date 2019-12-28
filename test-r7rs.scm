@@ -18,7 +18,8 @@
              (loop (bytevector-append whole part))))))))
 
 (define (main arguments)
-  (for-each (lambda (file) (tar-write-file file (slurp-binary-file file)))
+  (for-each (lambda (file) (tar-write-file (string-append "test/" file)
+                                           (slurp-binary-file file)))
             (cdr arguments)))
 
 (main (command-line))
