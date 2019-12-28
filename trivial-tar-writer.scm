@@ -9,6 +9,10 @@
 (define nulls (make-bytevector 512 0))
 (define blank-checksum (make-bytevector 7 (char->integer #\space)))
 
+(define (bytevector-sum bv)
+  (let loop ((i (- (bytevector-length bv) 1)) (sum 0))
+    (if (< i 0) sum (loop (- i 1) (+ sum (bytevector-u8-ref bv i))))))
+
 (define (tar-string nbyte string)
   (let* ((bytes (string->utf8 string))
          (nnull (- nbyte (bytevector-length bytes))))
@@ -23,14 +27,6 @@
     (when (< nzero 0) (error "tar: number too big"))
     (bytevector-append (make-bytevector nzero (char->integer #\0))
                        bytes (bytevector 0))))
-
-(define (tar-checksum . vectors)
-  (let loop-vectors ((vectors vectors) (sum 0))
-    (if (null? vectors) (truncate-remainder sum (expt 8 6))
-        (let* ((v (car vectors)) (n (bytevector-length v)))
-          (let loop-bytes ((i 0) (sum sum))
-            (if (= i n) (loop-vectors (cdr vectors) sum)
-                (loop-bytes (+ i 1) (+ sum (bytevector-u8-ref v i)))))))))
 
 (define (tar-write-file fake-path bytes)
   (let* ((unix-time-now 0)
@@ -53,9 +49,11 @@
            (tar-string 32 (cdr (tar-owner)))
            (tar-string 32 (cdr (tar-group)))
            (make-bytevector 183 0)))
-         (checksum (tar-octal 7 (tar-checksum header-before-checksum
-                                              blank-checksum
-                                              header-after-checksum))))
+         (checksum
+          (let ((sum (+ (bytevector-sum header-before-checksum)
+                        (bytevector-sum blank-checksum)
+                        (bytevector-sum header-after-checksum))))
+            (tar-octal 7 (truncate-remainder sum (expt 8 6))))))
     (write-bytevector header-before-checksum)
     (write-bytevector checksum)
     (write-bytevector header-after-checksum)
