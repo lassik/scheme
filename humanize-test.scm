@@ -1,0 +1,28 @@
+(import (scheme base) (scheme write))
+(import (humanize))
+
+(define-syntax pp
+  (syntax-rules ()
+    ((_ x) (begin (write 'x)
+                  (display " => ")
+                  (write (call-with-values (lambda () x) list))
+                  (newline)))))
+
+(pp (human-size letteri 0))
+(pp (human-size letteri 100))
+(pp (human-size letteri 1023))
+(pp (human-size letteri 1024))
+(pp (human-size letteri (- (* 1024 1024) 1)))
+(pp (human-size letteri (* 1024 1024)))
+(pp (human-size letteri (- (* 1024 1024 1024) 1)))
+(pp (human-size letteri (* 1024 1024 1024)))
+(pp (human-size letteri (- (* 1024 1024 1024 1024) 1)))
+(pp (human-size letteri (* 10 1024 1024 1024)))
+(pp (human-size letteri (- (* 1024 1024 1024 1024) 1)))
+(pp (human-size letteri (* 1024 1024 1024 1024)))
+(pp (human-size letteri (- (* 1024 1024 1024 1024 1024) 1)))
+(pp (human-size letteri (* 1024 1024 1024 1024 1024)))
+
+(pp (human-size-si letteri (* 1000 1000 1000 1000)))
+(pp (human-size-si letteri (* 1000 1000 1000 1000 1000)))
+(pp (human-size-si letteri (* 1024 1024 1024 1024 1024)))
