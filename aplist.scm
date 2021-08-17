@@ -1,25 +1,6 @@
 ;; Copyright 2021 Lassi Kortela
 ;; SPDX-License-Identifier: MIT
 
-;;; ->
-
-(define (alist->plist alist)
-  (let loop ((tail alist) (plist '()))
-    (if (null? tail) (reverse plist)
-        (let ((entry (car tail)))
-          (if (pair? entry)
-              (loop (cdr tail)
-                    (cons (cdr entry) (cons (car entry) plist)))
-              (error "Invalid alist" alist))))))
-
-(define (plist->alist plist)
-  (let loop ((tail plist) (alist '()))
-    (if (null? tail) (reverse alist)
-        (if (and (pair? tail) (pair? (cdr tail)))
-            (loop (cddr tail)
-                  (cons (cons (car tail) (cadr tail)) alist))
-            (error "Invalid plist" plist)))))
-
 ;;; fold
 
 (define (alist-fold merge state alist)
@@ -56,3 +37,12 @@
 (define (plist-map fn plist)
   (reverse (plist-fold (lambda (key val acc) (cons (fn key val) acc))
                        '() plist)))
+
+;;; ->
+
+(define (alist->plist alist)
+  (reverse (alist-fold (lambda (key val plist) (cons val (cons key plist)))
+                       '() alist)))
+
+(define (plist->alist plist)
+  (plist-map cons plist))
