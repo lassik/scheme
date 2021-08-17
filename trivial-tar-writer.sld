@@ -1,4 +1,4 @@
-(define-library (trivial-tar-writer)
+(define-library (lassik trivial-tar-writer)
   (export tar-owner
           tar-group
           tar-unix-mode

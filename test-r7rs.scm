@@ -5,7 +5,7 @@
         (scheme process-context)
         (scheme read)
         (scheme write)
-        (trivial-tar-writer))
+        (lassik trivial-tar-writer))
 
 (define (slurp-binary-file filename)
   (call-with-port
