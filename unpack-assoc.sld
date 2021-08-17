@@ -1,7 +1,7 @@
 ;; Copyright 2019 Lassi Kortela
 ;; SPDX-License-Identifier: ISC
 
-(define-library (unpack-assoc)
+(define-library (lassik unpack-assoc)
   (export unpack
           unpack-case
           unpack-using

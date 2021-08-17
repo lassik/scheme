@@ -1,7 +1,7 @@
 ;; Copyright 2019 Lassi Kortela
 ;; SPDX-License-Identifier: ISC
 
-(import (scheme base) (scheme write) (shell-quote))
+(import (scheme base) (scheme write) (lassik shell-quote))
 
 (define (q x)
   (display (shell-quote x))

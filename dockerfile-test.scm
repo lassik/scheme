@@ -1,7 +1,7 @@
 ;; Copyright 2019 Lassi Kortela
 ;; SPDX-License-Identifier: ISC
 
-(import (scheme base) (scheme write) (dockerfile))
+(import (scheme base) (scheme write) (lassik dockerfile))
 
 (display
  (quote-dockerfile
