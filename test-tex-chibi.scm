@@ -4,7 +4,7 @@
         (scheme file)
         (scheme process-context)
         (scheme write)
-        (tex-parser))
+        (lassik tex-parser))
 
 (define (main arguments)
   (for-each (lambda (tex-file)
