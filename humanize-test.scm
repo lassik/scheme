@@ -1,5 +1,4 @@
-(import (scheme base) (scheme write))
-(import (humanize))
+(import (scheme base) (scheme write) (lassik humanize))
 
 (define-syntax pp
   (syntax-rules ()

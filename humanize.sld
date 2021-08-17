@@ -1,4 +1,4 @@
-(define-library (humanize)
+(define-library (lassik humanize)
   (export human-size human-size-si
           letteri)
   (import (scheme base) (scheme write))
