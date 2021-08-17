@@ -1,4 +1,4 @@
-(define-library (command-line)
+(define-library (lassik command-line)
   (export join-posix-command-line
           join-windows-command-line)
   (import (scheme base))

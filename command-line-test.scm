@@ -1,4 +1,4 @@
-(import (scheme base) (command-line) (srfi 64))
+(import (scheme base) (srfi 64) (lassik command-line))
 
 (test-begin "command-line")
 
