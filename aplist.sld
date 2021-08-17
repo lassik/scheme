@@ -1,4 +1,4 @@
-(define-library (alist)
+(define-library (lassik aplist)
   (export alist->plist
           plist->alist
           alist-fold
