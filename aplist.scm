@@ -31,11 +31,11 @@
 ;;; map
 
 (define (alist-map fn alist)
-  (reverse (alist-fold (lambda (key val acc) (cons (fn key val) acc))
+  (reverse (alist-fold (lambda (key val list) (cons (fn key val) list))
                        '() alist)))
 
 (define (plist-map fn plist)
-  (reverse (plist-fold (lambda (key val acc) (cons (fn key val) acc))
+  (reverse (plist-fold (lambda (key val list) (cons (fn key val) list))
                        '() plist)))
 
 ;;; ->
